@@ -1,0 +1,17 @@
+.wraper {
+  margin: 10% 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #caf0f8;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+}

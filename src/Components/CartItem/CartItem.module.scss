@@ -1,0 +1,10 @@
+.cartItem {
+  display: flex;
+  padding: 1rem;
+
+  .img {
+    max-width: 20%;
+    aspect-ratio: 16/9;
+    max-height: 20%;
+  }
+}

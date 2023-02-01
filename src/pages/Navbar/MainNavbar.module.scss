@@ -1,0 +1,37 @@
+@mixin boxShadow($X: 0, $Y: 0, $blur: 0, $color: #fff) {
+  text-shadow: $X $Y $blur $color;
+}
+header {
+  margin-block: 2rem;
+}
+.navContainer {
+  display: grid;
+  list-style: none;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+
+  font-size: large;
+
+  li {
+    a {
+      text-decoration: none;
+      color: #caf0f8;
+    }
+    a:hover {
+      text-decoration: underline;
+      background-color: transparent;
+      color: #fff;
+      @include boxShadow(0, 0.1em, 2em, #fff);
+    }
+  }
+  li:nth-of-type(2) {
+    margin-left: 4rem;
+  }
+  .shoppingCart {
+    position: relative;
+
+    span {
+      position: absolute;
+      top: -1rem;
+    }
+  }
+}

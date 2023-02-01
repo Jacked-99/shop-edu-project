@@ -1,0 +1,38 @@
+@mixin max-width($width: 0) {
+  max-width: $width;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  width: fit-content;
+  align-items: center;
+  background-color: #0096c7;
+  margin-block: 0.5rem;
+  transition: all 1s ease;
+  .img {
+    aspect-ratio: 16/9;
+    @include max-width(70%);
+    margin: 1rem;
+  }
+  .button {
+    @include max-width(60%);
+    min-height: 40%;
+    border-radius: 1em;
+    padding: 1em 2em;
+  }
+  .button:hover {
+    transform: translateY(-5%);
+  }
+  .itemInfo {
+    align-self: baseline;
+  }
+}
+.isVisible {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.isHidden {
+  opacity: 0;
+  transform: translateX(-100%);
+}

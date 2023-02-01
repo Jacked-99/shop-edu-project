@@ -1,0 +1,28 @@
+.Spinner {
+  display: block;
+  animation: spin 2s linear infinite;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 1rem solid #48cae4;
+  position: relative;
+  place-self: center;
+}
+.Spinner::after {
+  position: absolute;
+  top: 10%;
+  content: "";
+  transform: rotate(35deg);
+  width: 1rem;
+  height: 2rem;
+  background-color: #fff;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
