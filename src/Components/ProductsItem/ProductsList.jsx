@@ -9,7 +9,13 @@ const ProductsList = ({ products }) => {
   return (
     <Card>
       {products.map((product) => (
-        <ProductsItem key={product.id} id={product.id} />
+        <ProductsItem
+          key={product.id}
+          id={product.id}
+          src={product.mainPic}
+          desc={product.desc}
+          name={product.name}
+        />
       ))}
     </Card>
   );

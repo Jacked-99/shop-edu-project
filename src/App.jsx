@@ -1,7 +1,9 @@
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootPage from "./pages/Roots/Root";
-import ProductsPage from "./pages/Products/ProductsPage";
+import ProductsPage, {
+  loader as productsLoader,
+} from "./pages/Products/ProductsPage";
 import ErrorPage from "./pages/Error/Error";
 import LoginPage, { action as loginAction } from "./pages/Login/Login";
 import ProductDetailPage from "./pages/Products/PrductDetail";
@@ -21,6 +23,7 @@ function App() {
             {
               index: true,
               element: <ProductsPage />,
+              loader: productsLoader,
             },
             { path: ":eventId", element: <ProductDetailPage /> },
           ],
