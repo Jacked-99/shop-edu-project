@@ -8,15 +8,7 @@ import {
 } from "react-router-dom";
 import styles from "./Products.module.scss";
 import Spinner from "../../UI/Spinner";
-const dummyProducts = [
-  { id: "1", title: "Product" },
-  { id: "2", title: "Product" },
-  { id: "3", title: "Product" },
-  { id: "4", title: "Product" },
-  { id: "5", title: "Product" },
-  { id: "6", title: "Product" },
-  { id: "7", title: "Product" },
-];
+
 const ProductsPage = () => {
   let planes = [];
   const data = useNavigation();

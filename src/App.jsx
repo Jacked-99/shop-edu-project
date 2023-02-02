@@ -6,7 +6,9 @@ import ProductsPage, {
 } from "./pages/Products/ProductsPage";
 import ErrorPage from "./pages/Error/Error";
 import LoginPage, { action as loginAction } from "./pages/Login/Login";
-import ProductDetailPage from "./pages/Products/PrductDetail";
+import ProductDetailPage, {
+  loader as productDetailsLoader,
+} from "./pages/Products/PrductDetail";
 import StoreRoot from "./pages/Roots/StoreRoot";
 import Cart from "./pages/Cart/Cart";
 
@@ -25,7 +27,11 @@ function App() {
               element: <ProductsPage />,
               loader: productsLoader,
             },
-            { path: ":eventId", element: <ProductDetailPage /> },
+            {
+              path: ":eventId",
+              element: <ProductDetailPage />,
+              loader: productDetailsLoader,
+            },
           ],
         },
         { path: "cart", element: <Cart /> },
