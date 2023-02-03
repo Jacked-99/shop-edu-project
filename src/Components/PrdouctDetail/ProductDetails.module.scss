@@ -1,0 +1,18 @@
+.name {
+  text-align: center;
+}
+.content {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    aspect-ratio: 16/9;
+    max-width: 30%;
+  }
+  p {
+    align-self: flex-start;
+    margin-inline: 3rem;
+  }
+}
