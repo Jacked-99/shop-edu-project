@@ -45,4 +45,6 @@ export const loader = async ({ request, params }) => {
   return data;
 };
 
-export const action = () => {};
+export const action = () => {
+  return console.log("lol");
+};

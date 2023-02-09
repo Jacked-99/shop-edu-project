@@ -11,7 +11,7 @@ import ProductDetailPage, {
 } from "./pages/Products/PrductDetail";
 import StoreRoot from "./pages/Roots/StoreRoot";
 import Cart from "./pages/Cart/Cart";
-
+import { action as productsAction } from "./pages/Products/ProductsPage";
 function App() {
   const router = createBrowserRouter([
     {
@@ -21,11 +21,13 @@ function App() {
         {
           path: "/",
           element: <StoreRoot />,
+          action: productsAction,
           children: [
             {
               index: true,
               element: <ProductsPage />,
               loader: productsLoader,
+
               id: "products",
             },
             {
