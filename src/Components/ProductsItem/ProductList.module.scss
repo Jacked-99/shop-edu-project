@@ -1,10 +1,21 @@
-.isVisible {
-  transform: translateX(0);
-  transition: all 1s ease;
-  opacity: 1;
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 1rem;
 }
-.isHidden {
-  transform: translateX(-100%);
-  transition: all 1s ease;
-  opacity: 0;
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 450px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 800px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

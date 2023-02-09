@@ -11,7 +11,7 @@ import LoginContext from "../../context/loginContext";
 const MainNav = () => {
   const cartContext = useContext(CartContext);
   const LoginCtx = useContext(LoginContext);
-  console.log(LoginCtx.username);
+
   return (
     <header>
       <ul className={styles.navContainer}>

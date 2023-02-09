@@ -26,6 +26,7 @@ function App() {
               index: true,
               element: <ProductsPage />,
               loader: productsLoader,
+              id: "products",
             },
             {
               path: ":eventId",

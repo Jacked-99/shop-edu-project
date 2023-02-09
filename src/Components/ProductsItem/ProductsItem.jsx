@@ -19,18 +19,23 @@ const ProductsItem = ({ id, src, desc, name }) => {
   };
   return (
     <motion.div
-      initial={{ opacity: 0, x: "-100%" }}
-      whileInView={{ opacity: 1, x: "0%" }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ root: scrollRef }}
-      transition={{ x: { duration: 0.7, ease: "easeIn" } }}
+      transition={{
+        duration: 0.3,
+        ease: "easeIn",
+        delay: id * 0.1 < 2 ? id * 0.1 : 2,
+      }}
     >
       <Card className={`${styles.container} `} ref={scrollRef}>
-        <img src={src} className={styles.img}></img>
+        <Link to={`/${id}`}>
+          <img src={src} className={styles.img}></img>
+        </Link>
         <div className={styles.itemInfo}>
           <h3>
             <Link to={`/${id}`}>{name}</Link>
           </h3>
-          <p>{desc}</p>
         </div>
         <button onClick={handleClick} className={styles.button}>
           Add to cart

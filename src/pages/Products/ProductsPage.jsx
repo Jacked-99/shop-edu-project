@@ -8,8 +8,11 @@ import {
 } from "react-router-dom";
 import styles from "./Products.module.scss";
 import Spinner from "../../UI/Spinner";
+import { useContext, useEffect, useMemo } from "react";
+import StoreContext from "../../context/storeContext";
 
 const ProductsPage = () => {
+  const storeCtx = useContext(StoreContext);
   let planes = [];
   const data = useNavigation();
   const loaderData = useLoaderData();
@@ -17,11 +20,14 @@ const ProductsPage = () => {
     planes.push(loaderData[key]);
   }
 
+  useEffect(() => {
+    storeCtx.setItems({ type: "add", value: planes });
+  }, []);
   return (
     <>
       {data.state === "loading" && <Spinner />}
 
-      <ProductsList products={planes} />
+      <ProductsList products={storeCtx.items} />
     </>
   );
 };
@@ -38,3 +44,5 @@ export const loader = async ({ request, params }) => {
   const data = await response.json();
   return data;
 };
+
+export const action = () => {};
