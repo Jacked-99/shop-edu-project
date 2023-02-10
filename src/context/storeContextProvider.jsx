@@ -4,34 +4,44 @@ import { useState, useMemo } from "react";
 const StoreContextProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [defaultstore, setDefault] = useState([]);
+  const [modified, setModified] = useState(false);
 
   const onSetStoreItems = (actionData) => {
-    let defaultItems = [];
     if (actionData.type === "search") {
       if (actionData.value.trim() === "") {
-        setItems(defaultstore);
+        setItems([...defaultstore]);
+      } else {
+        setItems(
+          items.filter((item) =>
+            item.name.toLowerCase().includes(actionData.value.toLowerCase())
+          )
+        );
       }
-      setItems(
-        items.filter((item) =>
-          item.name.toLowerCase().includes(actionData.value.toLowerCase())
-        )
-      );
+    }
+    if (actionData.type === "reset") {
+      setModified(false);
+      setItems([...defaultstore]);
     }
     if (actionData.type === "add") {
       setDefault([...actionData.value]);
-      console.log(defaultItems);
       setItems([...actionData.value]);
     }
     if (actionData.type === "sort") {
-      console.log(actionData.value);
-      setItems(
-        items.filter((item) => item.categories.includes(actionData.value))
-      );
+      if (modified === false) {
+        setItems(
+          items.filter((item) => item.categories.includes(actionData.value))
+        );
+        setModified(true);
+      } else {
+        setItems([...defaultstore]);
+        setModified(false);
+      }
     }
   };
   const newStoreContext = {
     default: defaultstore,
     items: items,
+    modified: modified,
     setItems: onSetStoreItems,
   };
 

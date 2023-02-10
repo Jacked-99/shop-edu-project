@@ -19,9 +19,14 @@ const ProductsPage = () => {
   for (let key in loaderData) {
     planes.push(loaderData[key]);
   }
+  console.log(planes);
 
   useEffect(() => {
-    storeCtx.setItems({ type: "add", value: planes });
+    if (storeCtx.items == []) {
+      storeCtx.setItems({ type: "add", value: planes });
+    } else {
+      storeCtx.setItems({ type: "add", value: planes });
+    }
   }, []);
   return (
     <>
