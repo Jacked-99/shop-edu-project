@@ -4,6 +4,8 @@ import { useContext, useRef } from "react";
 import CartContext from "../../context/cartContext";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const ProductsItem = ({ id, src, desc, name }) => {
   const cartContext = useContext(CartContext);
@@ -37,9 +39,13 @@ const ProductsItem = ({ id, src, desc, name }) => {
             <Link to={`/${id}`}>{name}</Link>
           </h3>
         </div>
-        <button onClick={handleClick} className={styles.button}>
+        <Button
+          onClick={handleClick}
+          className={styles.button}
+          endIcon={<AddShoppingCartIcon />}
+        >
           Add to cart
-        </button>
+        </Button>
       </Card>
     </motion.div>
   );

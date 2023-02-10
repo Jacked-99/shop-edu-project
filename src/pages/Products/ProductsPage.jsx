@@ -22,11 +22,7 @@ const ProductsPage = () => {
   console.log(planes);
 
   useEffect(() => {
-    if (storeCtx.items == []) {
-      storeCtx.setItems({ type: "add", value: planes });
-    } else {
-      storeCtx.setItems({ type: "add", value: planes });
-    }
+    storeCtx.setItems({ type: "add", value: planes });
   }, []);
   return (
     <>
