@@ -1,87 +1,116 @@
-import { Form, json, Link, redirect, useActionData } from "react-router-dom";
+import {
+  Form,
+  json,
+  Link,
+  useActionData,
+  useFetcher,
+  useNavigate,
+} from "react-router-dom";
 import DoneIcon from "@mui/icons-material/Done";
 import { useState, useContext } from "react";
-import { motion } from "framer-motion";
-import CartContext from "../../context/cartContext";
 import Card from "../../UI/BackgroundCard";
 import styles from "./Login.module.scss";
 import LoginContext from "../../context/loginContext";
-import { useEffect } from "react";
+import { TextField } from "@mui/material";
+import { auth } from "../../firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const LoginPage = () => {
-  const redirectFunc = () => {
-    setTimeout(() => {
-      redirect("/");
-    }, 1000);
-  };
-
+const SignupPage = () => {
   const action = useActionData();
+  const navigate = useNavigate();
   const loginCtx = useContext(LoginContext);
+
   if (action?.userName) {
     loginCtx.login(action.userName);
-    redirectFunc();
+    setTimeout(() => {
+      navigate("/");
+    }, 6000);
   }
   return (
     <Card className={styles.container}>
       {action?.userName ? (
         <div>
           <DoneIcon />
-          <p>Successfull login</p>
+          <p>Successfully signed up</p>
 
           <Link to={"/"}>Go to main page</Link>
         </div>
       ) : (
         <Form method="post">
+          {action?.msg && <p>Email already in use</p>}
           <div className={styles.inputContainer}>
-            <input type="text" name="username" placeholder="Username" />
-            {action?.userNameError && <p>{action.userNameError}</p>}
+            <TextField
+              className={styles.input}
+              variant="outlined"
+              type="text"
+              name="username"
+              label="Username"
+              required
+            />
           </div>
           <div className={styles.inputContainer}>
-            <input type="email" name="email" placeholder="E-mail" />
-            {action?.emailError && <p>{action.emailError}</p>}
+            <TextField
+              className={styles.input}
+              variant="outlined"
+              type="email"
+              name="email"
+              label="E-mail"
+              error={action?.msg && true}
+              required
+              helperText={action?.msg && "Email already in use"}
+            />
           </div>
           <div className={styles.inputContainer}>
-            <input type="password" name="password" placeholder="Password" />
-            {action?.passwordEemailError && <p>{action.passwordEemailError}</p>}
+            <TextField
+              className={styles.input}
+              variant="outlined"
+              type="password"
+              name="password"
+              label="Password"
+              required
+            />
           </div>
-          <button className={styles.button}>Login</button>
+          <div>
+            <Link to={"/login"} className={styles.link}>
+              Already have an account?
+            </Link>
+            <button className={styles.button}>Sign up</button>
+          </div>
         </Form>
       )}
     </Card>
   );
 };
 
-export default LoginPage;
+export default SignupPage;
 export const action = async ({ request, params }) => {
   const data = await request.formData();
   const userData = {
     userName: data.get("username"),
-    email: data.get("email"),
-    password: data.get("password"),
-    isLoggedIn: true,
-    cart: [],
   };
-  const error = {};
-  if (userData.userName.trim() === "") {
-    error.userNameError = "Enter username";
-  }
-  if (userData.email.trim() === "" || userData.email.includes("@") === false) {
-    error.emailError = "Wrong Login";
-  }
-  if (userData.password.trim().length < 6) {
-    error.passwordError = "Password is to short";
-  }
-  const response = await fetch(
-    "https://sacred-dahlia-367713-default-rtdb.europe-west1.firebasedatabase.app/Users.json",
-    { method: request.method, body: JSON.stringify(userData) }
-  );
+  let error = {};
+  // if (userData.userName.trim() === "") {
+  //   error.userNameError = "Enter username";
+  // }
+  // if (userData.email.trim() === "" || userData.email.includes("@") === false) {
+  //   error.emailError = "Wrong Login";
+  // }
+  // if (userData.password.trim().length < 6) {
+  //   error.passwordError = "Password is to short";
+  // }
+  await createUserWithEmailAndPassword(
+    auth,
+    data.get("email"),
+    data.get("password")
+  )
+    .then((userCredntials) => {
+      const user = userCredntials.user;
+    })
 
-  if (!response.ok) {
-    throw json({ message: "ohno" });
-  }
+    .catch((err) => (error.msg = err.message));
+
   if (Object.keys(error).length) {
     return error;
   }
-
   return userData;
 };

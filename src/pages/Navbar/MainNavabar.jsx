@@ -11,6 +11,9 @@ import LoginContext from "../../context/loginContext";
 const MainNav = () => {
   const cartContext = useContext(CartContext);
   const LoginCtx = useContext(LoginContext);
+  const onLogout = () => {
+    LoginCtx.logout();
+  };
 
   return (
     <header>
@@ -42,11 +45,11 @@ const MainNav = () => {
         <li>
           {LoginCtx.username !== null ? (
             <>
-              <NavLink to={"/Login"}>Logout</NavLink>
+              <button onClick={onLogout}>Logout</button>
               <p>{LoginCtx.username}</p>
             </>
           ) : (
-            <NavLink to={"/Login"}>Login</NavLink>
+            <NavLink to={"/signup"}>Login</NavLink>
           )}
         </li>
       </ul>

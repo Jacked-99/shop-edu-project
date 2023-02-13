@@ -5,13 +5,14 @@ import ProductsPage, {
   loader as productsLoader,
 } from "./pages/Products/ProductsPage";
 import ErrorPage from "./pages/Error/Error";
-import LoginPage, { action as loginAction } from "./pages/Login/Login";
+import SignupPage, { action as signUpAction } from "./pages/Login/Login";
 import ProductDetailPage, {
   loader as productDetailsLoader,
 } from "./pages/Products/PrductDetail";
 import StoreRoot from "./pages/Roots/StoreRoot";
 import Cart from "./pages/Cart/Cart";
 import { action as productsAction } from "./pages/Products/ProductsPage";
+import LoginPage, { action as loginAction } from "./pages/Sginup/Signup";
 function App() {
   const router = createBrowserRouter([
     {
@@ -39,6 +40,7 @@ function App() {
         },
         { path: "cart", element: <Cart /> },
         { path: "login", element: <LoginPage />, action: loginAction },
+        { path: "signup", element: <SignupPage />, action: signUpAction },
       ],
       errorElement: <ErrorPage />,
     },
