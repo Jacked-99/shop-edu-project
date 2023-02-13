@@ -4,17 +4,37 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import styles from "./MainNavbar.module.scss";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import CartContext from "../../context/cartContext";
-import { useContext, useState } from "react";
-import { motion } from "framer-motion";
+import { useContext, useState, useEffect } from "react";
+import { motion, useAnimationControls } from "framer-motion";
 import LoginContext from "../../context/loginContext";
 
 const MainNav = () => {
+  const controls = useAnimationControls();
+  const [playAnimation, setPlayAnimation] = useState(false);
   const cartContext = useContext(CartContext);
   const LoginCtx = useContext(LoginContext);
   const onLogout = () => {
     LoginCtx.logout();
   };
+  useEffect(() => {
+    if ((cartContext.totalAmount = 0)) {
+      return;
+    }
+    setPlayAnimation(true);
+    const timeout = setTimeout(() => {
+      setPlayAnimation(false);
+    }, 500);
 
+    return clearTimeout(timeout);
+  }, [cartContext.totalAmount]);
+  const bumping = {};
+  if (playAnimation) {
+    controls.start({
+      scale: [1, 1.5, 1],
+      rotate: [0, 45, 0],
+      transition: { duration: 0.5 },
+    });
+  }
   return (
     <header>
       <ul className={styles.navContainer}>
@@ -31,14 +51,18 @@ const MainNav = () => {
                 aria-label="Open cart"
                 aria-hidden={false}
               />
-              <span>
-                <motion.div
-                  animate={{ scale: [0, 1, 2, 1], x: [0, 100, 0] }}
-                  transition={{ scale: 1000 }}
-                >
-                  {cartContext.totalAmount > 0 ? cartContext.totalAmount : ""}
-                </motion.div>
-              </span>
+
+              <motion.span
+                animate={controls}
+                initial={{ scale: 1 }}
+                transition={{
+                  duration: 5,
+                  delay: 0.3,
+                  ease: [0.5, 0.71, 1, 1.5],
+                }}
+              >
+                {cartContext.totalAmount > 0 ? cartContext.totalAmount : ""}
+              </motion.span>
             </div>
           </NavLink>
         </li>
