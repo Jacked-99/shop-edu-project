@@ -3,16 +3,56 @@
 }
 .content {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   img {
     aspect-ratio: 16/9;
-    max-width: 30%;
+    max-width: 90%;
+    border-radius: 0.3em;
   }
   p {
     align-self: flex-start;
     margin-inline: 3rem;
+  }
+  .button {
+    background-color: #caf0f8;
+
+    min-height: 40%;
+    border-radius: 1em;
+    padding: 1em;
+
+    text-transform: uppercase;
+    font-size: large;
+  }
+  .button:hover {
+    transform: translateY(-5%);
+    cursor: pointer;
+    color: rgba(#03045e, 1);
+    background-color: #caf0f8;
+  }
+  .actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-block: 2rem;
+    > * {
+      margin-block: 1rem;
+    }
+    .value {
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+  }
+}
+@media (min-width: 1000px) {
+  .content {
+    flex-direction: row;
+    img {
+      aspect-ratio: 16/9;
+      max-width: 30%;
+    }
   }
 }

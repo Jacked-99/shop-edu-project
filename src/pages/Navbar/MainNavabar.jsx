@@ -5,8 +5,9 @@ import styles from "./MainNavbar.module.scss";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import CartContext from "../../context/cartContext";
 import { useContext, useState, useEffect } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { easeIn, easeInOut, motion, useAnimationControls } from "framer-motion";
 import LoginContext from "../../context/loginContext";
+import LogoutUser from "../../Components/Logout/LogoutUser";
 
 const MainNav = () => {
   const controls = useAnimationControls();
@@ -27,12 +28,12 @@ const MainNav = () => {
 
     return clearTimeout(timeout);
   }, [cartContext.totalAmount]);
-  const bumping = {};
+
   if (playAnimation) {
     controls.start({
-      scale: [1, 1.5, 1],
-      rotate: [0, 45, 0],
-      transition: { duration: 0.5 },
+      scale: [1, 1.3, 1],
+      rotate: [0, 25, -25, 0],
+      transition: { duration: 0.5, ease: easeInOut },
     });
   }
   return (
@@ -54,12 +55,7 @@ const MainNav = () => {
 
               <motion.span
                 animate={controls}
-                initial={{ scale: 1 }}
-                transition={{
-                  duration: 5,
-                  delay: 0.3,
-                  ease: [0.5, 0.71, 1, 1.5],
-                }}
+                initial={{ scale: 1, backgroundColor: "transparent" }}
               >
                 {cartContext.totalAmount > 0 ? cartContext.totalAmount : ""}
               </motion.span>
@@ -68,10 +64,7 @@ const MainNav = () => {
         </li>
         <li>
           {LoginCtx.username !== null ? (
-            <>
-              <button onClick={onLogout}>Logout</button>
-              <p>{LoginCtx.username}</p>
-            </>
+            <LogoutUser onClick={onLogout} />
           ) : (
             <NavLink to={"/signup"}>Login</NavLink>
           )}

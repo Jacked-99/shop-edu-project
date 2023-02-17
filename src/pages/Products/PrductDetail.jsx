@@ -2,8 +2,8 @@ import { useLoaderData, useParams } from "react-router-dom";
 import ProductDetails from "../../Components/PrdouctDetail/ProductDetails";
 
 const ProductDetailPage = () => {
-  const { desc, name, mainPic } = useLoaderData();
-  return <ProductDetails name={name} desc={desc} img={mainPic} />;
+  const { desc, name, mainPic, price } = useLoaderData();
+  return <ProductDetails name={name} desc={desc} img={mainPic} price={price} />;
 };
 
 export default ProductDetailPage;

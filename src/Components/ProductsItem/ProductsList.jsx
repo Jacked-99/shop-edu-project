@@ -18,6 +18,7 @@ const ProductsList = ({ products }) => {
             src={product.mainPic}
             desc={product.desc}
             name={product.name}
+            price={product.price}
           />
         ))}
       </Card>

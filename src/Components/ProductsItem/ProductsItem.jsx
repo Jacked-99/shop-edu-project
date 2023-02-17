@@ -7,16 +7,16 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-const ProductsItem = ({ id, src, desc, name }) => {
+const ProductsItem = ({ id, src, desc, name, price }) => {
   const cartContext = useContext(CartContext);
   const scrollRef = useRef(null);
-  //add Inter sect observer
+
   const handleClick = () => {
     cartContext.addItem({
       img: src,
       name: name,
       quantity: 1,
-      price: 10,
+      price: price,
     });
   };
   return (

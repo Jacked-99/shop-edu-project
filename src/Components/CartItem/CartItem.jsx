@@ -3,6 +3,7 @@ import { useContext } from "react";
 import CartContext from "../../context/cartContext";
 import { Button } from "@mui/material";
 import { borderColor } from "@mui/system";
+import AddRemoveButtons from "../ChangeQuantity/AddRemoveButtons";
 
 const CartItem = ({ name, img, price, quantity }) => {
   const cartCtx = useContext(CartContext);
@@ -23,34 +24,12 @@ const CartItem = ({ name, img, price, quantity }) => {
       <div className={styles.mainInfo}>
         <h2>{name}</h2>
         <div className={styles.info}>
-          <span>
-            <Button
-              style={{
-                fontSize: "1.2rem",
-                color: "#FFF",
-                borderColor: "#fff",
-                backgroundColor: "rgba(#FFF,0.4)",
-              }}
-              variant="outlined"
-              onClick={onDecreaseClick}
-            >
-              —
-            </Button>
-            <span className={styles.quantity}>{quantity}</span>
-            <Button
-              style={{
-                fontSize: "1.2rem",
-                color: "#FFF",
-                borderColor: "#fff",
-                backgroundColor: "rgba(#023e8a,0.5)",
-                marginRight: "0.5",
-              }}
-              variant="outlined"
-              onClick={onIncreaseClick}
-            >
-              +
-            </Button>
-          </span>
+          <AddRemoveButtons
+            onDecreaseClick={onDecreaseClick}
+            onIncreaseClick={onIncreaseClick}
+            displayedValue={quantity}
+          />
+
           <h2>{quantity * price} zł</h2>
         </div>
       </div>
