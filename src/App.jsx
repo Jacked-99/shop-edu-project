@@ -1,4 +1,5 @@
 import "./App.scss";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootPage from "./pages/Roots/Root";
 import ProductsPage, {
@@ -13,6 +14,7 @@ import StoreRoot from "./pages/Roots/StoreRoot";
 import Cart from "./pages/Cart/Cart";
 import { action as productsAction } from "./pages/Products/ProductsPage";
 import LoginPage, { action as loginAction } from "./pages/Sginup/Signup";
+
 function App() {
   const router = createBrowserRouter([
     {
