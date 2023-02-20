@@ -1,9 +1,9 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/firebase-auth";
+import { connectAuthEmulator, getAuth } from "firebase/auth";
 
-const firebaseConfig = {
+const firebaseConfig = initializeApp({
   apiKey: "AIzaSyDll51B5rhmcUg9n9jyfS9-VURExtnw_Gk",
 
   authDomain: "sacred-dahlia-367713.firebaseapp.com",
@@ -18,8 +18,6 @@ const firebaseConfig = {
   messagingSenderId: "420756014389",
 
   appId: "1:420756014389:web:12385ef94197011c2d387c",
-};
+});
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
-export default app;
+export const auth = getAuth(firebaseConfig);

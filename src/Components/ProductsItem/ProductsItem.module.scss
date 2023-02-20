@@ -4,35 +4,56 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr;
   width: fit-content;
-  align-items: center;
-  background-color: #0096c7;
+  border: 0.2rem solid #0096c7;
+  background-color: rgba(#0096c7, 0.8);
   margin-block: 0.5rem;
   transition: all 1s ease;
-  .img {
-    aspect-ratio: 16/9;
-    @include max-width(70%);
-    margin: 1rem;
+
+  * {
+    display: grid;
+    align-items: center;
+    justify-content: center;
   }
+  a {
+    text-decoration: none;
+    color: #fff;
+    .img {
+      margin: 1rem auto;
+      aspect-ratio: 16/9;
+      align-self: center;
+      @include max-width(70%);
+      border-radius: 1em;
+      transition: transform ease-in 0.5s;
+    }
+    .img:hover {
+      transform: translateY(-0.5rem);
+      transition: transform ease-in 0.5s;
+    }
+  }
+
   .button {
-    @include max-width(60%);
+    background-color: #caf0f8;
+    width: 100%;
     min-height: 40%;
     border-radius: 1em;
-    padding: 1em 2em;
+    padding: 1em;
+
+    text-transform: uppercase;
+    font-size: large;
   }
   .button:hover {
     transform: translateY(-5%);
+    cursor: pointer;
+    color: rgba(#03045e, 1);
+    background-color: #caf0f8;
   }
   .itemInfo {
     align-self: baseline;
   }
 }
-.isVisible {
-  opacity: 1;
-  transform: translateX(0%);
-}
-.isHidden {
-  opacity: 0;
-  transform: translateX(-100%);
+@media (min-width: 800px) {
+  .button {
+  }
 }

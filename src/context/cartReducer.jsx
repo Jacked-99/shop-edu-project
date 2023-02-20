@@ -43,4 +43,11 @@ export const cartReducer = (state, action) => {
       totalAmount: state.totalAmount - 1,
     };
   }
+  if (action.type === "clear") {
+    return {
+      items: [],
+      totalAmount: 0,
+      totalPrice: 0,
+    };
+  }
 };
