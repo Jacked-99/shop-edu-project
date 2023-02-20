@@ -12,13 +12,16 @@ const CartContextPrvider = (props) => {
   const removeItemFromCart = (id) => {
     dispatch({ type: "decrease", id: id });
   };
-
+  const clearCartClick = () => {
+    dispatch({ type: "clear" });
+  };
   const cartContext = {
     items: state.items,
     totalPrice: state.totalPrice,
     totalAmount: state.totalAmount,
     addItem: addItemToCart,
     removeItem: removeItemFromCart,
+    clearCart: clearCartClick,
   };
 
   return (

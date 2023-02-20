@@ -1,0 +1,16 @@
+.categories-conatiner {
+  .Categories {
+    background-color: #a9d6e5;
+
+    .CategoriesButton.Mui-selected {
+      background-color: #89c2d9;
+      color: white;
+    }
+    .CategoriesButton:hover,
+    .CategoriesButton.Mui-selected:hover {
+      background-color: #468faf;
+
+      color: white;
+    }
+  }
+}
