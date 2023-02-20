@@ -1,9 +1,11 @@
-#Plane model store app
+# Plane model store app
 
-##Introduction
+## Introduction
+
 This app was a practice project. I wanted to build something with the react knowledge I was able to gather. I wantend to build store app with common funcionalites, but I also wanted it to reflect my other passions and one of the biggest ones are planes (or aircarft in general). ✈️
 
-##Technologies
+## Technologies
+
 To build this project I used the following technologies
 
 - React v18.2.0
